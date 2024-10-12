@@ -8,17 +8,20 @@ public class Main {
         int[] grades = new int[]{12, 15, 9, 60, 75, 94, 40, 100, 89, 28, 37};
         List<Integer> badGrades = calculate.nichtAusreichend(grades);
 
+        System.out.println("Nicht ausreichende Noten:");
         for (int grade : badGrades) {
             System.out.println(grade);
         }
 
         System.out.println("Durchschnitt: " + calculate.average(grades));
 
+        System.out.println("Abgerundete Noten:");
         int[] roundedGrades = calculate.abgerundet(grades);
-
         for (int grade : roundedGrades) {
             System.out.println(grade);
         }
+
+        System.out.println("Beste Note: " + calculate.bestGrade(grades));
     }
 }
 
@@ -56,5 +59,16 @@ class Grades {
             else roundGrades[i] = grades[i];
         }
         return roundGrades;
+    }
+
+    public int bestGrade (int[] grades) {
+        int[] roundedGrades = abgerundet(grades);
+
+        int max = 0;
+        for (int grade : roundedGrades) {
+            if (max < grade)
+                max = grade;
+        }
+        return max;
     }
 }
