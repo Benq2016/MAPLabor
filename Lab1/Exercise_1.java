@@ -1,8 +1,8 @@
-package MAPLabor.ex1;
+package MAPLabor.Lab1;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Main {
+public class Exercise_1 {
     public static void main(String[] args) {
         Grades calculate = new Grades();
         int[] grades = new int[]{12, 15, 9, 60, 75, 94, 40, 100, 89, 28, 37};
@@ -27,6 +27,7 @@ public class Main {
 
 
 class Grades {
+    //? returns a new array of grades which are <40
     public List<Integer> nichtAusreichend(int[] grades) {
        List<Integer> badGrades = new ArrayList<Integer>();
 
@@ -38,6 +39,7 @@ class Grades {
         return badGrades;
     }
 
+    //? calculates the average of the grades
     public double average(int[] grades) {
         int count = 0;
         int sum = 0;
@@ -48,6 +50,7 @@ class Grades {
         return sum / count;
     }
 
+    //? rounds the grades to the nearest multiple of 5 IF the difference is <3 and returns a new array of rounded grades
     public int[] abgerundet(int[] grades) {
         int[] roundGrades = new int[grades.length];
 
@@ -61,6 +64,7 @@ class Grades {
         return roundGrades;
     }
 
+    //? returns the highest grade in the array of grades after the round up
     public int bestGrade (int[] grades) {
         int[] roundedGrades = abgerundet(grades);
 
