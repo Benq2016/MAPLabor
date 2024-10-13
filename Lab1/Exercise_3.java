@@ -18,10 +18,12 @@ public class Exercise_3 {
         int[] result2 = b3.Summe(b4);
         int[] result4 = b4.Differenz(b3);
         int[] result5 = b3.Multiplikation(2);
-        System.out.println(Arrays.toString(result1));
-        System.out.println(Arrays.toString(result2));
-        System.out.println(Arrays.toString(result4));
-        System.out.println(Arrays.toString(result5));
+        int[] result6 = b3.Division(2);
+        System.out.println("Summe: " + Arrays.toString(result1));
+        System.out.println("Summe: " + Arrays.toString(result2));
+        System.out.println("Subtraktion: " + Arrays.toString(result4));
+        System.out.println("Multiplikation: " + Arrays.toString(result5));
+        System.out.println("Division: " + Arrays.toString(result6));
     }
 }
 
@@ -106,6 +108,29 @@ class BigNumbers {
         }
 
         //* if the first number is 0, it will be deleted, so it looks nicer
+        if (result[0] == 0) {
+            return Arrays.copyOfRange(result, 1, result.length);
+        }
+
+        return result;
+    }
+
+    //? returns the quotient of a big number with a number
+    public int[] Division(int number) {
+        int carryflag = 0;
+        int[] result = new int[this.num.length];
+        int i = 0;
+
+        while (i < this.num.length) {
+            int div = this.num[i] + carryflag * 10;
+            
+            carryflag = div % number;
+            result[i] = div / number;
+
+            i++;
+        }
+
+        // //* if the first number is 0, it will be deleted, so it looks nicer
         if (result[0] == 0) {
             return Arrays.copyOfRange(result, 1, result.length);
         }
