@@ -16,8 +16,12 @@ public class Exercise_3 {
 
         int[] result1 = b1.Summe(b2);
         int[] result2 = b3.Summe(b4);
+        int[] result4 = b4.Differenz(b3);
+        int[] result5 = b3.Multiplikation(2);
         System.out.println(Arrays.toString(result1));
         System.out.println(Arrays.toString(result2));
+        System.out.println(Arrays.toString(result4));
+        System.out.println(Arrays.toString(result5));
     }
 }
 
@@ -43,12 +47,68 @@ class BigNumbers {
             i--;
         }
 
+        //* if there is still a carryflag it will be set at the first position
         if (carryflag != 0)
             result[0] = carryflag;
         
         //* if the first number is 0, it will be deleted, so it looks nicer
         if (result[0] == 0)
             return Arrays.copyOfRange(result, 1, result.length);
+
+        return result;
+    }
+
+    //? returns the difference of two big numbers
+    public int[] Differenz(BigNumbers other) {
+        int carryflag = 0;
+        int[] result = new int[this.num.length];
+        int i = this.num.length - 1;
+
+        while (i >=0) {
+            int sub = this.num[i] - other.num[i] - carryflag;
+            carryflag = 0;
+
+            if (sub < 0) {
+                sub += 10;
+                carryflag += 1;
+            }
+
+            result[i] = sub;
+            i--;
+        }
+        
+        //* if the first number is 0, it will be deleted, so it looks nicer
+        if (result[0] == 0) {
+            return Arrays.copyOfRange(result, 1, result.length);
+        }
+
+        return result;
+    }
+
+    //? returns the product of a big number with a number
+    public int[] Multiplikation(int number) {
+        int carryflag = 0;
+        int[] result = new int[this.num.length + 1];
+        int i = this.num.length - 1;
+
+        while(i >= 0) {
+            int mul = this.num[i] * number + carryflag;
+
+            carryflag = mul / 10;
+            result[i + 1] = mul % 10;
+
+            i--;
+        }
+        
+        //* if there is still a carryflag it will be set at the first position
+        if (carryflag != 0) {
+            result[0] = carryflag;
+        }
+
+        //* if the first number is 0, it will be deleted, so it looks nicer
+        if (result[0] == 0) {
+            return Arrays.copyOfRange(result, 1, result.length);
+        }
 
         return result;
     }
