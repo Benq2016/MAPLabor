@@ -19,5 +19,4 @@ public class USB {
     public static List<USB> getAllUSBs() {
         return usbs;
     }
-    
 }

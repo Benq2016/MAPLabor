@@ -13,6 +13,7 @@ public class Main {
 
         System.out.println("Cheapest Keyboard: " + getCheapestKeyboard());
         System.out.println("Most Expensive Tool: " + getMostExpensiveTool());
+        System.out.println("Most Expensive USB from 30$: " + getMostExpensiveUSB(30));
     }
 
     public static int getCheapestKeyboard() {
@@ -35,6 +36,15 @@ public class Main {
         for(Keyboard keyboard : Keyboard.getAllKeyboards()) {
             if (keyboard.getPrice() > max)
                 max = keyboard.getPrice();
+        }
+        return max;
+    }
+
+    public static int getMostExpensiveUSB(int budget) {
+        int max = 0;
+        for (USB usb : USB.getAllUSBs()) {
+            if(usb.getPrice() > max && usb.getPrice() <= budget)
+                max = usb.getPrice();
         }
         return max;
     }
